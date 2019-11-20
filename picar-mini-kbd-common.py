@@ -150,11 +150,6 @@ def line_detect():
     rospy.init_node('line_tracing', anonymous=True)
     rospy.Subscriber("line_tracing", String, line_tracer)
 
-    rospy.spin()
-
-if __name__ == '__main__':
-    line_detect()
-
 ##########################################################
 # program begins
 ##########################################################
@@ -303,17 +298,19 @@ while True:
             btn = ord('k')
             message = "forward"
             rospy.loginfo("forward")
+            line_detect(message)
         elif degree >= 15:
             #actuator.right()
             car_angle = 30
             btn = ord('l')
             message = "right"
+            line_detect(message)
         elif degree <= -15:
             #actuator.left()
             car_angle = -30
             btn = ord('j')
             message = "left"
-        
+            line_detect(message)
 
 #   print "%.3f: took %.2fd ms" %(ts - start_ts, float(dur*1000))
 
